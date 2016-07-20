@@ -6,6 +6,7 @@ const SearchBar = ({users, setUsers}) => {
     const _searchUsers = function (e) {
         const value = e.target.value.trim();
         const searchResult = users.filter(user => user.name.includes(value));
+        console.log(searchResult);
         setUsers(searchResult);
     };
 

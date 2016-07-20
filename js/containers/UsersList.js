@@ -7,47 +7,59 @@ export default class UsersList extends Component {
         super(props);
 
         this.state = {
-            currentUser: 0
+            currentUserId: 0
         };
     }
 
     _isCurrentUser(userId) {
-        return this.state.currentUser === userId;
+        return this.state.currentUserId === userId;
     }
 
-    _setCurrentUser(userId) {
+    _setCurrentUserId(userId) {
         this.setState({
-            currentUser: userId
+            currentUserId: userId
         })
     }
 
     _getUsers() {
         return this.props.users.map((user) => {
             return <UserData key={user.id} user={user} isCurrent={this._isCurrentUser(user.id)}
-                             setCurrent={this._setCurrentUser.bind(this)}/>;
+                             setCurrent={this._setCurrentUserId.bind(this)}/>;
         });
+    }
+
+    _getUserById(userId) {
+        return this.props.users.filter((user) => user.id === userId)[0];
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.users.length) {
+            this._setCurrentUserId(nextProps.users[0].id);
+        }
     }
 
     render() {
         return (
-            <div className="row">
-                <div className="col-sm-2">
-                    <UserActive user={this.props.users[this.state.currentUser]}/>
-                </div>
-                <div className="col-sm-10">
-                    <table className="table users-list">
-                        <thead>
-                        <tr>
-                            <th>Avatar</th>
-                            <th>Name</th>
-                            <th>Age</th>
-                            <th>Phone</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {this._getUsers()}
-                        </tbody>
-                    </table>
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-sm-2">
+                        <UserActive user={this._getUserById(this.state.currentUserId)}/>
+                    </div>
+                    <div className="col-sm-10">
+                        <table className="table users-list">
+                            <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Phone</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {this._getUsers()}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         );
