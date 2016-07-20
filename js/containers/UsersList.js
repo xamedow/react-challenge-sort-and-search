@@ -22,10 +22,16 @@ export default class UsersList extends Component {
     }
 
     _getUsers() {
-        return this.props.users.map((user) => {
-            return <UserData key={user.id} user={user} isCurrent={this._isCurrentUser(user.id)}
-                             setCurrent={this._setCurrentUserId.bind(this)}/>;
-        });
+        if (this.props.users && this.props.users.length) {
+            return this.props.users.map((user) => {
+                return <UserData key={user.id} user={user} isCurrent={this._isCurrentUser(user.id)}
+                                 setCurrent={this._setCurrentUserId.bind(this)}/>;
+            });
+        }
+
+        return (<tr>
+            <td>No users found</td>
+        </tr>)
     }
 
     _getUserById(userId) {
