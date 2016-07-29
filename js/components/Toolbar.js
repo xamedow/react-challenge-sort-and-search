@@ -27,7 +27,10 @@ export default class Toolbar extends Component {
                     }
                 }
             ]
-        }
+        };
+
+        this.handleSortButton = this.handleSortButton.bind(this);
+        this._resetSorters = this._resetSorters.bind(this);
     }
 
     _sortUsersBy(field, direction, compare) {
@@ -36,16 +39,16 @@ export default class Toolbar extends Component {
         }));
     }
 
-    _handleSortButton(e) {
+    handleSortButton(e) {
         const target = e.currentTarget;
         const stateKey = this.state.sorters.reduce((out, sorter, idx) => {
-           if(sorter.name === target.dataset.name) {
-               return out + idx;
-           }
-           return out;
+            if (sorter.name === target.dataset.name) {
+                return out + idx;
+            }
+            return out;
         }, 0);
         let newStateSorters = this.state.sorters.map(sorter => {
-            sorter.active = false;
+            sorter.active = '';
             return sorter;
         });
 
@@ -57,6 +60,21 @@ export default class Toolbar extends Component {
         e.preventDefault();
     }
 
+    _unactiveSorters() {
+        const sorters = this.state.sorters.map(sorter => {
+            sorter.active = '';
+            return sorter;
+        });
+        this.setState({
+            sorters: sorters
+    })
+    }
+
+    _resetSorters() {
+        this._unactiveSorters();
+        this._sortUsersBy('id', 1, (x, y) => x - y);
+    }
+
     render() {
         const usersCount = this.props.users.length;
 
@@ -64,11 +82,14 @@ export default class Toolbar extends Component {
             <div className="container-fluid">
                 {
                     this.state.sorters.map((sorter) => {
-                      return (<SortButton key={sorter.name} sorter={sorter} handler={this._handleSortButton.bind(this)} usersCount={usersCount}/>)
+                        return (
+                            <SortButton key={sorter.name} sorter={sorter} handler={this.handleSortButton}
+                                        usersCount={usersCount}/>)
                     })
                 }
                 <div className="row col-md-2">
-                    <a href="#" className="btn btn-danger" disabled={!usersCount}>
+                    <a onClick={this._resetSorters} href="#" className="btn btn-danger"
+                       disabled={!usersCount}>
                         <i className="fa fa-ban"></i>
                         <span>Reset</span>
                     </a>
