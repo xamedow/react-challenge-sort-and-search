@@ -36,7 +36,7 @@ export default class App extends Component {
     render() {
         return (
             <div className="container-fluid app">
-                <SearchBar users={this.state.originalUsers} setUsers={this._setUsers.bind(this)} />
+                <SearchBar originalUsers={this.state.originalUsers} users={this.state.users} setUsers={this._setUsers.bind(this)} />
                 <Toolbar users={this.state.users} setUsers={this._setUsers.bind(this)} />
                 <UserList users={this.state.users}/>
             </div>

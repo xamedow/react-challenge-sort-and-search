@@ -1,24 +1,17 @@
 import React, { Component } from 'react';
 
 
-const SearchBar = ({users, setUsers}) => {
-    let result = [];
-
+const SearchBar = ({originalUsers, users, setUsers}) => {
     const _searchUsers = function (e) {
         const value = e.target.value.trim();
-        result = users.filter(user => user.name.includes(value));
-        _setResult();
-    };
-
-    const _setResult = function() {
-        setUsers(result);
+        setUsers(originalUsers.filter(user => user.name.includes(value)));
     };
 
     return (
         <div className="container-fluid">
             <div className="form-group has-feedback">
                 <input type="text" className="form-control" placeholder="search users" onChange={_searchUsers.bind(this)}/>
-                <span className="badge form-control-feedback">{result.length}</span>
+                <span className="form-control-feedback"><span className="badge">{users.length}</span></span>
             </div>
         </div>
     );
