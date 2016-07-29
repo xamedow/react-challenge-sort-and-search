@@ -58,15 +58,17 @@ export default class Toolbar extends Component {
     }
 
     render() {
+        const usersCount = this.props.users.length;
+
         return (
             <div className="container-fluid">
                 {
                     this.state.sorters.map((sorter) => {
-                      return (<SortButton key={sorter.name} sorter={sorter} handler={this._handleSortButton.bind(this)} />)
+                      return (<SortButton key={sorter.name} sorter={sorter} handler={this._handleSortButton.bind(this)} usersCount={usersCount}/>)
                     })
                 }
                 <div className="row col-md-2">
-                    <a href="#" className="btn btn-danger">
+                    <a href="#" className="btn btn-danger" disabled={!usersCount}>
                         <i className="fa fa-ban"></i>
                         <span>Reset</span>
                     </a>
