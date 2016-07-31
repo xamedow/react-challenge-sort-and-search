@@ -79,7 +79,7 @@ export default class Toolbar extends Component {
         const usersCount = this.props.users.length;
 
         return (
-            <div className="container-fluid">
+            <div className="container-fluid toolbar">
                 {
                     this.state.sorters.map((sorter) => {
                         return (
@@ -87,13 +87,11 @@ export default class Toolbar extends Component {
                                         usersCount={usersCount}/>)
                     })
                 }
-                <div className="row col-md-2">
-                    <a onClick={this._resetSorters} href="#" className="btn btn-danger"
-                       disabled={!usersCount}>
-                        <i className="fa fa-ban"></i>
-                        <span>Reset</span>
-                    </a>
-                </div>
+                <a onClick={this._resetSorters} className="btn btn-danger"
+                   disabled={!usersCount}>
+                    <i className="fa fa-ban"></i>
+                    <span>Reset</span>
+                </a>
             </div>
         );
     }
