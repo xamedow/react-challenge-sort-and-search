@@ -6,7 +6,7 @@ const UserActive = ({user}) => {
         return (
             <div className="list-group">
                 <div className="list-group-item">
-                    <img className="img-thumbnail" src={'/images/' + user.image + '.svg'} alt={user.name}/>
+                    <img className="img-thumbnail" src={'images/' + user.image + '.svg'} alt={user.name}/>
                 </div>
                 <div className="list-group-item">
                     <div className="row">
