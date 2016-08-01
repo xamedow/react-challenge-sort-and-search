@@ -2,7 +2,7 @@
 
 [Статья на сайте](http://jsraccoon.ru/react-challenge-sort-and-search)
 
-[Демо приложения](http://rtivital.github.io/react-challenge-sort-and-search-solution/)
+[Демо приложения](http://xamedow.github.io/react-challenge-sort-and-search-solution)
 
 Что делать:
 
