@@ -28,7 +28,7 @@ const UserActive = ({user}) => {
         );
     }
 
-    return (<div></div>);
+    return (<div>User not found.</div>);
 };
 
 export default UserActive;

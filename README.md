@@ -1,8 +1,8 @@
-# Пилотный выпуск React Challenge: сортировка и поиск данных
+# React Challenge: сортировка и поиск данных
 
 [Статья на сайте](http://jsraccoon.ru/react-challenge-sort-and-search)
 
-[Демо приложения](http://rtivital.github.io/react-challenge-sort-and-search-solution/)
+[Демо приложения](http://xamedow.github.io/react-challenge-sort-and-search/)
 
 Что делать:
 
@@ -18,4 +18,8 @@
 * Дефолтный (просто `gulp`): запускает browsersync и решрешит при изменении js, css и html. Браузер должен открыть самостоятельно.
 * Деплой (`gulp deploy`): пушит всё, что находится в папке `public` в ветку `gh-pages`. В результате сайт можно показать другу
 
-## Удачи!
+## Скрипт для тестирования
+
+* Тесты для кодовой базы располагаются в папке '/test'. Тестирование запускатся командой 'npm run test' 
+или в режиме отслеживания изменений 'npm run test:watch'. 
+
