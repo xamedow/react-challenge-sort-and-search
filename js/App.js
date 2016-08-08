@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import UserList from './containers/UsersList';
+import Toolbar from './containers/Toolbar'
 import SearchBar from './components/SearchBar'
-import Toolbar from './components/Toolbar'
 
 
 export default class App extends Component {
@@ -24,6 +24,11 @@ export default class App extends Component {
         this.setState({
             users: users
         });
+    }
+
+    _searchUsers(e) {
+        const value = e.target.value.trim();
+        setUsers(originalUsers.filter(user => user.name.includes(value)));
     }
 
     componentDidMount() {
