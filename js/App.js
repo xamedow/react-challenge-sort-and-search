@@ -10,7 +10,12 @@ export default class App extends Component {
         this.state = {
             users: [],
             originalUsers: [],
+            term: ''
         };
+
+        this._setOriginalUsers = this._setOriginalUsers.bind(this);
+        this.setTerm = this.setTerm.bind(this);
+        this.setUsers = this.setUsers.bind(this);
     }
 
     _setOriginalUsers(users) {
@@ -20,29 +25,38 @@ export default class App extends Component {
         });
     }
 
-    _setUsers(users) {
+    _searchUsers(term) {
+        if (term) {
+            this.setUsers(this.state.originalUsers.filter(user => user.name.includes(term)));
+        } else {
+            this.setUsers(this.state.originalUsers);
+        }
+    }
+
+    setUsers(users) {
         this.setState({
             users: users
         });
     }
 
-    _searchUsers(e) {
-        const value = e.target.value.trim();
-        setUsers(originalUsers.filter(user => user.name.includes(value)));
+    setTerm(e) {
+        const term = e.target.value.trim();
+        this._searchUsers(term);
+        this.setState({term});
     }
 
     componentDidMount() {
         fetch('data.json')
             .then(response => response.json())
-            .then(this._setOriginalUsers.bind(this))
+            .then(this._setOriginalUsers)
             .catch(console.warn);
     }
 
     render() {
         return (
             <div className="container-fluid app">
-                <SearchBar originalUsers={this.state.originalUsers} users={this.state.users} setUsers={this._setUsers.bind(this)} />
-                <Toolbar users={this.state.users} setUsers={this._setUsers.bind(this)} />
+                <SearchBar foundUsers={this.state.users.length} term={this.state.term} setTerm={this.setTerm} />
+                <Toolbar users={this.state.users} setUsers={this.setUsers} />
                 <UserList users={this.state.users}/>
             </div>
         );

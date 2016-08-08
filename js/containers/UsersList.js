@@ -9,6 +9,8 @@ export default class UsersList extends Component {
         this.state = {
             currentUserId: 0
         };
+
+        this._setCurrentUserId = this._setCurrentUserId.bind(this)
     }
 
     _isCurrentUser(userId) {
@@ -23,10 +25,14 @@ export default class UsersList extends Component {
 
     _getUsers() {
         if (this.props.users && this.props.users.length) {
-            return this.props.users.map((user) => {
-                return <UserData key={user.id} user={user} isCurrent={this._isCurrentUser(user.id)}
-                                 setCurrent={this._setCurrentUserId.bind(this)}/>;
-            });
+            return this.props.users.map(user =>
+                <UserData
+                    key={user.id}
+                    user={user}
+                    isCurrent={this._isCurrentUser(user.id)}
+                    setCurrent={this._setCurrentUserId}
+                />
+            );
         }
 
         return (<tr>

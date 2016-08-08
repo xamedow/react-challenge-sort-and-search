@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import SortButton from './SortButton';
+import SortButton from '../components/SortButton';
 
 
 export default class Toolbar extends Component {
@@ -83,13 +83,21 @@ export default class Toolbar extends Component {
                 {
                     this.state.sorters.map((sorter) => {
                         return (
-                            <SortButton key={sorter.name} sorter={sorter} handler={this.handleSortButton}
-                                        usersCount={usersCount}/>)
+                            <SortButton
+                                key={sorter.name}
+                                sorter={sorter}
+                                onClick={this.handleSortButton}
+                                disabled={!usersCount}
+                            />)
                     })
                 }
                 <div className="row col-md-2">
-                    <a onClick={this._resetSorters} href="#" className="btn btn-danger"
-                       disabled={!usersCount}>
+                    <a
+                        onClick={this._resetSorters}
+                        href="#"
+                        className="btn btn-danger"
+                        disabled={!usersCount}
+                    >
                         <i className="fa fa-ban"></i>
                         <span>Reset</span>
                     </a>
