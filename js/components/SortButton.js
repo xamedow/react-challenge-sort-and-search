@@ -5,18 +5,16 @@ const SortButton = ({sorter, onClick, disabled}) => {
         const {active, direction, icon, name} = sorter;
 
         return (
-            <div className="row col-md-2">
-                <a
-                    onClick={onClick}
-                    href="#"
-                    className={`btn btn-default ${active}`}
-                    data-name={name}
-                    disabled={disabled}
-                >
-                    <i className={`fa fa-sort-${icon}-${direction}`}></i>
-                    <span>Sort by {name}</span>
-                </a>
-            </div>
+            <a
+                onClick={onClick}
+                href="#"
+                className={`btn btn-default ${active}`}
+                data-name={name}
+                disabled={disabled}
+            >
+                <i className={`fa fa-sort-${icon}-${direction}`}></i>
+                <span>Sort by {name}</span>
+            </a>
         )
     }
 
