@@ -30,7 +30,7 @@ export default class UsersList extends Component {
                     key={user.id}
                     user={user}
                     isCurrent={this._isCurrentUser(user.id)}
-                    setCurrent={this._setCurrentUserId}
+                    onClick={this._setCurrentUserId}
                 />
             );
         }
