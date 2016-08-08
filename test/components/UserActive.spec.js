@@ -29,7 +29,7 @@ describe('<UserActive />', () => {
 
         expect(wrapper.type()).to.equal('div');
         expect(wrapper.hasClass('list-group')).to.equal(true);
-        expect(wrapper.find('.list-group-item.row').length).to.equal(5);
+        expect(wrapper.find('.list-group-item').length).to.equal(5);
     });
 
     it('Should return a correct image html, when passed a right props', () => {
@@ -43,7 +43,7 @@ describe('<UserActive />', () => {
         const wrapper = shallow(<UserActive user={user}/>);
         const props = wrapper.childAt(0).childAt(0).props();
 
-        expect(props.src).to.equal('/images/' + user.image + '.svg');
+        expect(props.src).to.equal('images/' + user.image + '.svg');
         expect(props.alt).to.equal(user.name);
     });
 

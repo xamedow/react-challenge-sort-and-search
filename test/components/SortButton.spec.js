@@ -20,10 +20,11 @@ describe('<SortButton/>', () => {
         };
         const wrapper = shallow(<SortButton sorter={sorter} />);
 
-        expect(wrapper.hasClass('row')).to.equal(true);
-        expect(wrapper.find('a.btn.btn-default.active')).to.have.length(1);
-        expect(wrapper.find('a.btn.btn-default.active').props()['data-name']).to.equal(sorter.name);
+        expect(wrapper.hasClass('active')).to.equal(true);
+        expect(wrapper.hasClass('btn')).to.equal(true);
+        expect(wrapper.hasClass('btn-default')).to.equal(true);
+        expect(wrapper.props()['data-name']).to.equal(sorter.name);
         expect(wrapper.find(`i.fa.fa-sort-${sorter.icon}-${sorter.direction}`)).to.have.length(1);
-        expect(wrapper.find('a span').text()).to.equal(`Sort by ${sorter.name}`);
+        expect(wrapper.find('span').text()).to.equal(`Sort by ${sorter.name}`);
     });
 });

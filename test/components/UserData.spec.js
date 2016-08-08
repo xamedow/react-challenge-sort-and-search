@@ -15,29 +15,29 @@ describe('<UserData />', () => {
     };
 
     it('Component should exist', () => {
-        const setCurrent = sinon.spy();
-        const wrapper = shallow(<UserData user={user} setCurrent={setCurrent} />);
+        const onClick = sinon.spy();
+        const wrapper = shallow(<UserData user={user} onClick={onClick} />);
 
         expect(wrapper).to.exist;
     });
 
     it('Should have an active class when passed isCurrent: true prop', () => {
-        const setCurrent = sinon.spy();
-        const wrapper = shallow(<UserData user={user} isCurrent={true} setCurrent={setCurrent} />);
+        const onClick = sinon.spy();
+        const wrapper = shallow(<UserData user={user} isCurrent={true} onClick={onClick} />);
 
         expect(wrapper.hasClass('active')).to.equal(true);
     });
 
     it('Shouldn`t have an active class when passed isCurrent: false prop', () => {
-        const setCurrent = sinon.spy();
-        const wrapper = shallow(<UserData user={user} isCurrent={false} setCurrent={setCurrent} />);
+        const onClick = sinon.spy();
+        const wrapper = shallow(<UserData user={user} isCurrent={false} onClick={onClick} />);
 
         expect(wrapper.hasClass('active')).to.equal(false);
     });
 
     it('Should map user object to its html', () => {
-        const setCurrent = sinon.spy();
-        const wrapper = shallow(<UserData user={user} isCurrent={false} setCurrent={setCurrent} />);
+        const onClick = sinon.spy();
+        const wrapper = shallow(<UserData user={user} isCurrent={false} onClick={onClick} />);
         const userKeysArr = Object.keys(user);
 
         wrapper.find('td').forEach((td, idx) => {
